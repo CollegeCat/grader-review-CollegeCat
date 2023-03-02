@@ -5,7 +5,7 @@ git clone $1 student-submission
 echo 'Finished cloning'
 
 cd student-submission
-if [[-f ListExamples.java ]]
+if [[ -f ListExamples.java ]]
 then
     echo 'ListExamples found'
 else 
@@ -13,11 +13,11 @@ else
     exit 1
 fi
 
-cd ~
+cd ..
 cp TestListExamples.java student-submission
 cd student-submission
 
-javac -cp .:~/lib/hamcrest-core-1.3.jar:~/lib/junit-4.13.2.jar *.java
+javac -cp ".;../lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar" *.java
 exit_code = $?
 if [[ $status -ne 0]]
 then
@@ -25,6 +25,5 @@ then
     exit 1
 fi
 
-java -cp .:~/lib/hamcrest-core-1.3.jar:~/lib/junit-4.13.2.jar org.junit.runner.JUnitCore TestListExamples
+java -cp ".;../lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar" org.junit.runner.JUnitCore TestListExamples
 other_exit_code = $?
-if 
